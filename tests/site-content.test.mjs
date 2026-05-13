@@ -80,6 +80,19 @@ test('stylesheet defines Oxygenceuticals-inspired responsive page and product la
   assert.match(css, /\.announcement-bar/);
 });
 
+test('stylesheet applies a premium clinical brand design system', () => {
+  assert.match(css, /--champagne:/);
+  assert.match(css, /--panel:/);
+  assert.match(css, /--shadow-soft:/);
+  assert.match(css, /body::before/);
+  assert.match(css, /\.site-header::after/);
+  assert.match(css, /\.page-hero::before/);
+  assert.match(css, /\.quick-menu a::before/);
+  assert.match(css, /\.product-card::before/);
+  assert.match(css, /\.button:hover/);
+  assert.match(css, /box-shadow:\s*var\(--shadow-soft\)/);
+});
+
 test('javascript implements navigation, page transitions, and non-sending form validation', () => {
   assert.match(js, /data-nav-toggle/);
   assert.match(js, /data-contact-form/);

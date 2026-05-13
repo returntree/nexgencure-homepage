@@ -26,6 +26,7 @@ for (const file of requiredFiles) {
 const home = await readFile('index.html', 'utf8');
 const products = await readFile('products.html', 'utf8');
 const company = await readFile('company.html', 'utf8');
+const css = await readFile('assets/css/styles.css', 'utf8');
 const checks = [
   ['Separate company page link', home.includes('href="company.html"')],
   ['Separate products page link', home.includes('href="products.html"')],
@@ -37,7 +38,10 @@ const checks = [
   ['BS407 product', products.includes('BS407')],
   ['MYONGMUNHWAN product', /MYONGMUNHWAN|명문염/.test(products)],
   ['Nadyon source', products.includes('nadyon.com')],
-  ['No ecommerce cart', !/장바구니|결제|checkout|cart/i.test(home + products)]
+  ['No ecommerce cart', !/장바구니|결제|checkout|cart/i.test(home + products)],
+  ['Premium clinical style tokens', css.includes('--champagne:') && css.includes('--panel:')],
+  ['Premium page hero styling', css.includes('.page-hero::before')],
+  ['Premium product card styling', css.includes('.product-card::before')]
 ];
 
 const failed = checks.filter(([, passed]) => !passed);
