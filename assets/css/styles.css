@@ -159,10 +159,11 @@ body[data-page="contact"] .site-nav a[href="contact.html"],
 .hero-slide::before {
   position: absolute;
   inset: 0;
+  z-index: 1;
   content: "";
   background:
-    linear-gradient(90deg, rgba(3, 18, 44, 0.88) 0%, rgba(10, 51, 112, 0.68) 42%, rgba(10, 89, 178, 0.24) 100%),
-    radial-gradient(circle at 76% 28%, rgba(255, 255, 255, 0.28), transparent 34%);
+    linear-gradient(90deg, rgba(3, 18, 44, 0.9) 0%, rgba(5, 25, 58, 0.76) 38%, rgba(5, 25, 58, 0.24) 68%, rgba(5, 25, 58, 0.04) 100%),
+    linear-gradient(0deg, rgba(3, 18, 44, 0.42) 0%, rgba(3, 18, 44, 0) 44%);
 }
 
 .hero-slide.is-active {
@@ -172,24 +173,34 @@ body[data-page="contact"] .site-nav a[href="contact.html"],
   transform: translateX(0);
 }
 
-.slide-brand {
-  background: linear-gradient(135deg, #09275a 0%, #0b62d4 58%, #19bfd1 100%);
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+  transition: transform 900ms ease;
 }
 
-.slide-device {
-  background: linear-gradient(135deg, #061a39 0%, #104faf 52%, #1fb6c9 100%);
+.hero-slide.is-active .slide-bg {
+  transform: scale(1);
 }
 
-.slide-salt {
-  background: linear-gradient(135deg, #102030 0%, #186c91 52%, #d8b869 100%);
+.slide-brand .slide-bg {
+  object-position: center;
+}
+
+.slide-device .slide-bg,
+.slide-salt .slide-bg {
+  object-position: center right;
 }
 
 .slide-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 0.76fr);
-  gap: clamp(34px, 5vw, 70px);
   align-items: center;
   width: min(100%, 1420px);
   min-height: calc(100vh - 260px);
@@ -229,75 +240,6 @@ body[data-page="contact"] .site-nav a[href="contact.html"],
   border-color: rgba(255, 255, 255, 0.55);
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
-}
-
-.slide-visual {
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-height: clamp(360px, 44vw, 560px);
-}
-
-.slide-visual::before {
-  position: absolute;
-  width: 82%;
-  aspect-ratio: 1 / 1;
-  content: "";
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.34), rgba(168, 237, 244, 0.18) 42%, transparent 68%);
-  filter: blur(8px);
-}
-
-.slide-visual img {
-  position: relative;
-  z-index: 1;
-  width: min(100%, 620px);
-  max-height: 540px;
-  object-fit: contain;
-  filter: drop-shadow(0 34px 44px rgba(0, 0, 0, 0.28));
-}
-
-.slide-brand .slide-visual img {
-  overflow: hidden;
-  width: min(100%, 560px);
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-}
-
-.product-focus img {
-  padding: clamp(14px, 2vw, 24px);
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 8px;
-}
-
-.slide-badge {
-  position: absolute;
-  right: 0;
-  bottom: 8%;
-  z-index: 2;
-  display: grid;
-  gap: 2px;
-  min-width: 190px;
-  padding: 16px;
-  color: var(--white);
-  background: rgba(5, 20, 45, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 8px;
-  backdrop-filter: blur(14px);
-}
-
-.slide-badge span {
-  color: #a8edf4;
-  font-size: 12px;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.slide-badge strong {
-  font-size: 24px;
-  line-height: 1.1;
 }
 
 .slider-controls {
@@ -869,12 +811,7 @@ body[data-page="certification"] .page-hero {
   }
 
   .slide-content {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-
-  .slide-visual {
-    min-height: 330px;
+    min-height: calc(100vh - 240px);
   }
 
   .brand-visual,
@@ -950,31 +887,31 @@ body[data-page="certification"] .page-hero {
 
   .home-hero,
   .hero-slide {
-    min-height: 850px;
+    min-height: 760px;
   }
 
   .hero-slide {
     padding: 44px 5vw 98px;
   }
 
+  .hero-slide::before {
+    background:
+      linear-gradient(90deg, rgba(3, 18, 44, 0.92) 0%, rgba(5, 25, 58, 0.72) 72%, rgba(5, 25, 58, 0.34) 100%),
+      linear-gradient(0deg, rgba(3, 18, 44, 0.36) 0%, rgba(3, 18, 44, 0) 44%);
+  }
+
+  .slide-bg {
+    object-position: 68% center;
+  }
+
+  .slide-content {
+    align-items: start;
+    min-height: auto;
+    padding-top: 20px;
+  }
+
   .hero-slider .hero-copy h1 {
     font-size: 36px;
-  }
-
-  .slide-visual {
-    min-height: 260px;
-  }
-
-  .slide-visual img,
-  .slide-brand .slide-visual img {
-    max-height: 280px;
-  }
-
-  .slide-badge {
-    right: 12px;
-    bottom: 4px;
-    min-width: 170px;
-    padding: 13px;
   }
 
   .slider-controls {

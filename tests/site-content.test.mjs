@@ -44,8 +44,19 @@ test('homepage uses a premium visual hero slider', () => {
   assert.match(html, /aria-label="이전 슬라이드"/);
   assert.match(html, /aria-label="다음 슬라이드"/);
   assert.match(css, /\.hero-slide/);
-  assert.match(css, /\.slide-visual/);
+  assert.match(css, /\.slide-bg/);
   assert.match(js, /data-hero-slider/);
+});
+
+test('homepage hero uses newly generated campaign images instead of reused product photos', () => {
+  assert.match(html, /assets\/img\/hero\/nexgencure-brand-hero\.png/);
+  assert.match(html, /assets\/img\/hero\/nexgencure-device-hero\.png/);
+  assert.match(html, /assets\/img\/hero\/nexgencure-salt-hero\.png/);
+
+  const heroMarkup = html.match(/<section class="home-hero hero-slider"[\s\S]*?<\/section>/)?.[0] || '';
+  assert.doesNotMatch(heroMarkup, /assets\/img\/company-hero\.png/);
+  assert.doesNotMatch(heroMarkup, /assets\/img\/products\/bs407\.png/);
+  assert.doesNotMatch(heroMarkup, /assets\/img\/products\/myongmunhwan\.jpg/);
 });
 
 test('products page uses selected Nadyon electronic and salt products', () => {
