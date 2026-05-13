@@ -10,6 +10,8 @@ const requiredFiles = [
   'contact.html',
   'assets/css/styles.css',
   'assets/js/site.js',
+  'assets/img/company-hero.png',
+  'assets/img/company-greeting.png',
   'assets/img/products/bs407.png',
   'assets/img/products/myongmunhwan.jpg'
 ];
@@ -25,6 +27,9 @@ const checks = [
   ['Separate company page link', home.includes('href="company.html"')],
   ['Separate products page link', home.includes('href="products.html"')],
   ['Company copy', company.includes('넥스젠큐어는 미용기기와 헬스케어 제품을 중심으로')],
+  ['Company hero image', company.includes('assets/img/company-hero.png')],
+  ['Company greeting image', company.includes('assets/img/company-greeting.png')],
+  ['Company facts footer area', company.includes('class="footer-profile"')],
   ['BS407 product', products.includes('BS407')],
   ['MYONGMUNHWAN product', /MYONGMUNHWAN|명문염/.test(products)],
   ['Nadyon source', products.includes('nadyon.com')],

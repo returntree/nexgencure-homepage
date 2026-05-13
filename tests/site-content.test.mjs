@@ -66,3 +66,11 @@ test('copy is final company copy, not sample placeholders', () => {
   assert.doesNotMatch(allCopy, /샘플|임시|placeholder|확인 후 반영|준비 중/i);
   assert.match(company, /넥스젠큐어는 미용기기와 헬스케어 제품을 중심으로/);
 });
+
+test('company page moves company facts to footer area and uses greeting visuals', () => {
+  assert.match(company, /assets\/img\/company-hero\.png/);
+  assert.match(company, /assets\/img\/company-greeting\.png/);
+  assert.match(company, /class="greeting-panel"/);
+  assert.match(company, /class="footer-profile"/);
+  assert.ok(company.indexOf('class="greeting-panel"') < company.indexOf('class="footer-profile"'));
+});
