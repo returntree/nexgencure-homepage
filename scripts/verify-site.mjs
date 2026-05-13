@@ -26,6 +26,7 @@ const company = await readFile('company.html', 'utf8');
 const checks = [
   ['Separate company page link', home.includes('href="company.html"')],
   ['Separate products page link', home.includes('href="products.html"')],
+  ['Homepage visual slider', home.includes('data-hero-slider') && home.includes('data-slide-index="2"')],
   ['Company copy', company.includes('넥스젠큐어는 미용기기와 헬스케어 제품을 중심으로')],
   ['Company hero image', company.includes('assets/img/company-hero.png')],
   ['Company greeting image', company.includes('assets/img/company-greeting.png')],

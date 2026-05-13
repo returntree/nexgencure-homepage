@@ -33,6 +33,21 @@ test('homepage positions NexGenCure as a branding and technology company', () =>
   assert.match(html, /기술력|Technology/);
 });
 
+test('homepage uses a premium visual hero slider', () => {
+  assert.match(html, /class="home-hero hero-slider"/);
+  assert.match(html, /data-hero-slider/);
+  assert.match(html, /data-slide-index="0"/);
+  assert.match(html, /data-slide-index="1"/);
+  assert.match(html, /data-slide-index="2"/);
+  assert.match(html, /BS407/);
+  assert.match(html, /MYONGMUNHWAN|명문염/);
+  assert.match(html, /aria-label="이전 슬라이드"/);
+  assert.match(html, /aria-label="다음 슬라이드"/);
+  assert.match(css, /\.hero-slide/);
+  assert.match(css, /\.slide-visual/);
+  assert.match(js, /data-hero-slider/);
+});
+
 test('products page uses selected Nadyon electronic and salt products', () => {
   assert.match(products, /BS407/);
   assert.match(products, /MYONGMUNHWAN|명문염/);

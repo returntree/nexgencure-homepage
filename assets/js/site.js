@@ -4,12 +4,78 @@
   const message = document.querySelector('[data-form-message]');
   const form = document.querySelector('[data-contact-form]');
   const year = document.querySelector('[data-year]');
+  const sliders = document.querySelectorAll('[data-hero-slider]');
 
   document.body.classList.add('is-loaded');
 
   if (year) {
     year.textContent = String(new Date().getFullYear());
   }
+
+  sliders.forEach((slider) => {
+    const slides = Array.from(slider.querySelectorAll('[data-hero-slide]'));
+    const dots = Array.from(slider.querySelectorAll('[data-slider-dot]'));
+    const prev = slider.querySelector('[data-slider-prev]');
+    const next = slider.querySelector('[data-slider-next]');
+
+    if (slides.length === 0) {
+      return;
+    }
+
+    let activeIndex = Math.max(0, slides.findIndex((slide) => slide.classList.contains('is-active')));
+    let intervalId = null;
+
+    const showSlide = (index) => {
+      activeIndex = (index + slides.length) % slides.length;
+
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === activeIndex;
+        slide.classList.toggle('is-active', active);
+        slide.setAttribute('aria-hidden', String(!active));
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        dot.setAttribute('aria-current', String(dotIndex === activeIndex));
+      });
+    };
+
+    const stopAuto = () => {
+      if (intervalId) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    const startAuto = () => {
+      stopAuto();
+      intervalId = window.setInterval(() => showSlide(activeIndex + 1), 6500);
+    };
+
+    prev?.addEventListener('click', () => {
+      showSlide(activeIndex - 1);
+      startAuto();
+    });
+
+    next?.addEventListener('click', () => {
+      showSlide(activeIndex + 1);
+      startAuto();
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        showSlide(Number(dot.dataset.slideTarget || 0));
+        startAuto();
+      });
+    });
+
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+    slider.addEventListener('focusin', stopAuto);
+    slider.addEventListener('focusout', startAuto);
+
+    showSlide(activeIndex);
+    startAuto();
+  });
 
   if (nav && toggle) {
     toggle.addEventListener('click', () => {
