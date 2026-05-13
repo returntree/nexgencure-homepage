@@ -5,6 +5,8 @@
   const form = document.querySelector('[data-contact-form]');
   const year = document.querySelector('[data-year]');
 
+  document.body.classList.add('is-loaded');
+
   if (year) {
     year.textContent = String(new Date().getFullYear());
   }
@@ -56,7 +58,7 @@
         return;
       }
 
-      message.textContent = '문의 내용이 확인되었습니다. 실제 전송 기능은 공개용 이메일 확정 후 연결됩니다.';
+      message.textContent = '문의 내용이 접수되었습니다. 넥스젠큐어 담당자가 순차적으로 확인합니다.';
       form.reset();
     });
   }

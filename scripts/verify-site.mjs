@@ -3,26 +3,32 @@ import { resolve } from 'node:path';
 
 const requiredFiles = [
   'index.html',
+  'company.html',
+  'technology.html',
+  'products.html',
+  'certification.html',
+  'contact.html',
   'assets/css/styles.css',
   'assets/js/site.js',
-  'assets/img/nexgencure-hero.png',
-  'assets/img/device-showcase.png',
-  'assets/img/salt-care.png'
+  'assets/img/products/bs407.png',
+  'assets/img/products/myongmunhwan.jpg'
 ];
 
 for (const file of requiredFiles) {
   await access(resolve(file));
 }
 
-const html = await readFile('index.html', 'utf8');
+const home = await readFile('index.html', 'utf8');
+const products = await readFile('products.html', 'utf8');
+const company = await readFile('company.html', 'utf8');
 const checks = [
-  ['Hero CTA', html.includes('제품 문의')],
-  ['Company section', html.includes('id="company"')],
-  ['Technology section', html.includes('id="technology"')],
-  ['Products section', html.includes('id="products"')],
-  ['Certification section', html.includes('id="certification"')],
-  ['Contact section', html.includes('id="contact"')],
-  ['No ecommerce cart', !/장바구니|결제|checkout|cart/i.test(html)]
+  ['Separate company page link', home.includes('href="company.html"')],
+  ['Separate products page link', home.includes('href="products.html"')],
+  ['Company copy', company.includes('넥스젠큐어는 미용기기와 헬스케어 제품을 중심으로')],
+  ['BS407 product', products.includes('BS407')],
+  ['MYONGMUNHWAN product', /MYONGMUNHWAN|명문염/.test(products)],
+  ['Nadyon source', products.includes('nadyon.com')],
+  ['No ecommerce cart', !/장바구니|결제|checkout|cart/i.test(home + products)]
 ];
 
 const failed = checks.filter(([, passed]) => !passed);
