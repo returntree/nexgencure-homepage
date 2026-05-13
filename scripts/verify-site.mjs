@@ -26,7 +26,11 @@ for (const file of requiredFiles) {
 const home = await readFile('index.html', 'utf8');
 const products = await readFile('products.html', 'utf8');
 const company = await readFile('company.html', 'utf8');
+const technology = await readFile('technology.html', 'utf8');
+const certification = await readFile('certification.html', 'utf8');
+const contact = await readFile('contact.html', 'utf8');
 const css = await readFile('assets/css/styles.css', 'utf8');
+const publicCopy = [home, company, technology, products, certification, contact].join('\n');
 const checks = [
   ['Separate company page link', home.includes('href="company.html"')],
   ['Separate products page link', home.includes('href="products.html"')],
@@ -37,7 +41,10 @@ const checks = [
   ['Company facts footer area', company.includes('class="footer-profile"')],
   ['BS407 product', products.includes('BS407')],
   ['MYONGMUNHWAN product', /MYONGMUNHWAN|명문염/.test(products)],
-  ['Nadyon source', products.includes('nadyon.com')],
+  ['Current development product positioning', products.includes('현재 개발 상품') && products.includes('헬스케어 디바이스') && products.includes('건강식품 개발품')],
+  ['No Nadyon sourcing language', !/나디온|Nadyon|nadyon|제품 목록 출처|등록 제품|등록명/.test(publicCopy)],
+  ['No narrow selected product language', !/전자제품과 소금제품만|전자제품, 소금제품|전자제품 BS407|소금제품 MYONGMUNHWAN|선별했습니다|선별해|선별된|선별 제품군|선별 제품/.test(publicCopy)],
+  ['Healthcare and functional food positioning', /헬스케어/.test(publicCopy) && /건강식품/.test(publicCopy)],
   ['No ecommerce cart', !/장바구니|결제|checkout|cart/i.test(home + products)],
   ['Premium clinical style tokens', css.includes('--champagne:') && css.includes('--panel:')],
   ['Premium page hero styling', css.includes('.page-hero::before')],

@@ -7,6 +7,9 @@ const css = await readFile(new URL('../assets/css/styles.css', import.meta.url),
 const js = await readFile(new URL('../assets/js/site.js', import.meta.url), 'utf8').catch(() => '');
 const products = await readFile(new URL('../products.html', import.meta.url), 'utf8').catch(() => '');
 const company = await readFile(new URL('../company.html', import.meta.url), 'utf8').catch(() => '');
+const technology = await readFile(new URL('../technology.html', import.meta.url), 'utf8').catch(() => '');
+const certification = await readFile(new URL('../certification.html', import.meta.url), 'utf8').catch(() => '');
+const contact = await readFile(new URL('../contact.html', import.meta.url), 'utf8').catch(() => '');
 
 const requiredPages = [
   '../index.html',
@@ -59,13 +62,24 @@ test('homepage hero uses newly generated campaign images instead of reused produ
   assert.doesNotMatch(heroMarkup, /assets\/img\/products\/myongmunhwan\.jpg/);
 });
 
-test('products page uses selected Nadyon electronic and salt products', () => {
+test('products page presents NexGenCure healthcare and functional food development products', () => {
   assert.match(products, /BS407/);
   assert.match(products, /MYONGMUNHWAN|명문염/);
-  assert.match(products, /nadyon\.com/);
+  assert.match(products, /현재 개발 상품|개발 상품/);
+  assert.match(products, /헬스케어 디바이스/);
+  assert.match(products, /건강식품 개발품/);
   assert.match(products, /assets\/img\/products\/bs407\.png/);
   assert.match(products, /assets\/img\/products\/myongmunhwan\.jpg/);
   assert.doesNotMatch(products, /cart|장바구니|checkout|결제|order|주문조회/i);
+});
+
+test('public copy avoids sourcing and narrow selection language', () => {
+  const publicCopy = [html, company, technology, products, certification, contact].join('\n');
+  assert.doesNotMatch(publicCopy, /나디온|Nadyon|nadyon|제품 목록 출처|등록 제품|등록명/);
+  assert.doesNotMatch(publicCopy, /전자제품과 소금제품만|전자제품, 소금제품|전자제품 BS407|소금제품 MYONGMUNHWAN/);
+  assert.doesNotMatch(publicCopy, /선별했습니다|선별해|선별된|선별 제품군|선별 제품/);
+  assert.match(publicCopy, /헬스케어/);
+  assert.match(publicCopy, /건강식품/);
 });
 
 test('contact section includes the approved business address', () => {
