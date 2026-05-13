@@ -94,9 +94,12 @@ test('copy is final company copy, not sample placeholders', () => {
 });
 
 test('company page moves company facts to footer area and uses greeting visuals', () => {
-  assert.match(company, /assets\/img\/company-hero\.png/);
+  assert.match(company, /assets\/img\/hero\/nexgencure-company-hero\.png/);
   assert.match(company, /assets\/img\/company-greeting\.png/);
   assert.match(company, /class="greeting-panel"/);
   assert.match(company, /class="footer-profile"/);
   assert.ok(company.indexOf('class="greeting-panel"') < company.indexOf('class="footer-profile"'));
+
+  const companyHeroMarkup = company.match(/<section class="page-hero split-hero company-intro-hero"[\s\S]*?<\/section>/)?.[0] || '';
+  assert.doesNotMatch(companyHeroMarkup, /assets\/img\/company-hero\.png/);
 });

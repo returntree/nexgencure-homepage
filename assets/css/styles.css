@@ -501,6 +501,7 @@ body[data-page="certification"] .page-hero {
 }
 
 .company-intro-hero {
+  grid-template-columns: minmax(0, 0.86fr) minmax(480px, 0.82fr);
   background: linear-gradient(180deg, #ffffff 0%, #f5fbfd 100%);
 }
 
@@ -510,6 +511,7 @@ body[data-page="certification"] .page-hero {
 
 .company-intro-hero img {
   aspect-ratio: 16 / 10;
+  object-position: center right;
   background: #eef8fb;
 }
 
