@@ -92,6 +92,19 @@ test('materials page naming matches available content', () => {
   assert.match(certification, /<p class="eyebrow">Materials<\/p>/);
 });
 
+test('subpage heroes expose concise page cues', () => {
+  for (const page of [company, technology, products, certification, contact]) {
+    assert.match(page, /class="hero-tags"/);
+  }
+
+  assert.match(company, /Manufacturing Base/);
+  assert.match(technology, /Product Planning/);
+  assert.match(products, /B2B Review/);
+  assert.match(certification, /Business Info/);
+  assert.match(contact, /Partnership/);
+  assert.match(css, /\.hero-tags/);
+});
+
 test('contact page explains inquiry flow and consultation scope', () => {
   assert.match(contact, /상담 범위/);
   assert.match(contact, /접수 후 확인/);

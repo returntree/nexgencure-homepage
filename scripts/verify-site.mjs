@@ -44,6 +44,7 @@ const checks = [
   ['Product lineup copy', products.includes('주요 제품 라인업') && products.includes('class="product-points"')],
   ['Materials page copy', certification.includes('사업 검토에 필요한 자료를 정리합니다') && certification.includes('Materials')],
   ['Contact guide copy', contact.includes('class="contact-guide"') && contact.includes('상담 범위')],
+  ['Subpage hero cues', [company, technology, products, certification, contact].every(page => page.includes('class="hero-tags"')) && products.includes('B2B Review') && contact.includes('Partnership') && css.includes('.hero-tags')],
   ['No sourcing language', !/나디온|Nadyon|nadyon|제품 목록 출처|등록 제품|등록명/.test(publicCopy)],
   ['No temporary product tone', !/현재 개발 상품|개발품입니다|임시|샘플|placeholder/i.test(publicCopy)],
   ['No ecommerce cart', !/장바구니|결제|checkout|cart/i.test(home + products)],
