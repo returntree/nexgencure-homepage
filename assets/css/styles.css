@@ -1539,3 +1539,203 @@ body[data-page="contact"] .site-nav a[href="contact.html"]::after,
     height: 38px;
   }
 }
+
+/* Corporate content refinements */
+.business-overview,
+.technology-roadmap {
+  padding: 82px 5vw;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.business-overview .section-heading,
+.technology-roadmap .section-heading {
+  max-width: 920px;
+}
+
+.insight-grid,
+.roadmap-list {
+  display: grid;
+  gap: 20px;
+}
+
+.insight-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.insight-grid article,
+.roadmap-list li,
+.contact-guide {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(217, 230, 236, 0.92);
+  border-radius: var(--radius);
+  background: var(--panel-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.insight-grid article,
+.roadmap-list li {
+  padding: 26px;
+}
+
+.insight-grid article::before,
+.roadmap-list li::before,
+.contact-guide::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  content: "";
+  background: linear-gradient(90deg, var(--champagne), var(--aqua), transparent);
+}
+
+.insight-grid strong,
+.roadmap-list strong {
+  display: block;
+  color: var(--ink);
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.insight-grid p,
+.roadmap-list span,
+.contact-guide p,
+.product-points {
+  color: var(--body);
+}
+
+.standard-band {
+  padding: 74px 5vw;
+  color: var(--white);
+  background:
+    linear-gradient(135deg, rgba(6, 25, 43, 0.96), rgba(10, 46, 78, 0.94)),
+    linear-gradient(90deg, rgba(201, 171, 110, 0.2), transparent);
+}
+
+.standard-band h2 {
+  max-width: 900px;
+  margin: 0;
+  color: var(--white);
+  font-size: 42px;
+  line-height: 1.18;
+}
+
+.standard-band p:not(.eyebrow) {
+  max-width: 780px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 18px;
+}
+
+.technology-roadmap {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(243, 249, 251, 0.96));
+}
+
+.roadmap-list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.roadmap-list span {
+  display: block;
+  margin-top: 12px;
+}
+
+.product-points {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding-left: 18px;
+}
+
+.product-points li::marker {
+  color: var(--champagne);
+}
+
+.contact-info-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.contact-guide {
+  padding: 26px;
+}
+
+.contact-guide h2 {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-size: 30px;
+}
+
+.contact-guide ul {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--body);
+}
+
+.contact-guide p {
+  margin: 18px 0 0;
+}
+
+@media (max-width: 1040px) {
+  .insight-grid,
+  .roadmap-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .business-overview,
+  .technology-roadmap,
+  .standard-band {
+    padding: 54px 5vw;
+  }
+
+  .insight-grid,
+  .roadmap-list {
+    grid-template-columns: 1fr;
+  }
+
+  .standard-band h2 {
+    font-size: 30px;
+  }
+
+  .insight-grid article,
+  .roadmap-list li,
+  .contact-guide {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 760px) {
+  .announcement-bar {
+    display: block;
+    padding: 8px 20px;
+    text-align: center;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-slider .hero-copy h1,
+  .hero-copy h1,
+  .page-hero h1 {
+    max-width: 100%;
+    font-size: 32px;
+    line-height: 1.2;
+    text-wrap: auto;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-slider .hero-lead,
+  .hero-lead,
+  .page-hero p:not(.eyebrow) {
+    max-width: 100%;
+    text-wrap: auto;
+    overflow-wrap: anywhere;
+  }
+}

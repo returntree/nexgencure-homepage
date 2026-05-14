@@ -31,24 +31,24 @@ const certification = await readFile('certification.html', 'utf8');
 const contact = await readFile('contact.html', 'utf8');
 const css = await readFile('assets/css/styles.css', 'utf8');
 const publicCopy = [home, company, technology, products, certification, contact].join('\n');
+
 const checks = [
   ['Separate company page link', home.includes('href="company.html"')],
   ['Separate products page link', home.includes('href="products.html"')],
+  ['Materials navigation label', publicCopy.includes('>Materials</a>') && !publicCopy.includes('>Certification</a>')],
   ['Homepage visual slider', home.includes('data-hero-slider') && home.includes('data-slide-index="2"')],
-  ['Company copy', company.includes('넥스젠큐어는 미용기기와 헬스케어 제품을 중심으로')],
-  ['Company hero image', company.includes('assets/img/hero/nexgencure-company-hero.png')],
-  ['Company greeting image', company.includes('assets/img/company-greeting.png')],
-  ['Company facts footer area', company.includes('class="footer-profile"')],
-  ['BS407 product', products.includes('BS407')],
-  ['MYONGMUNHWAN product', /MYONGMUNHWAN|명문염/.test(products)],
-  ['Current development product positioning', products.includes('현재 개발 상품') && products.includes('헬스케어 디바이스') && products.includes('건강식품 개발품')],
-  ['No Nadyon sourcing language', !/나디온|Nadyon|nadyon|제품 목록 출처|등록 제품|등록명/.test(publicCopy)],
-  ['No narrow selected product language', !/전자제품과 소금제품만|전자제품, 소금제품|전자제품 BS407|소금제품 MYONGMUNHWAN|선별했습니다|선별해|선별된|선별 제품군|선별 제품/.test(publicCopy)],
-  ['Healthcare and functional food positioning', /헬스케어/.test(publicCopy) && /건강식품/.test(publicCopy)],
+  ['Corporate positioning', /뷰티·헬스케어 기업|헬스케어 브랜드|제품 라인업/.test(publicCopy)],
+  ['Company business overview', company.includes('class="business-overview"') && company.includes('사업영역과 핵심역량')],
+  ['Company operating standard', company.includes('class="standard-band"') && company.includes('운영 기준')],
+  ['Technology roadmap', technology.includes('class="technology-roadmap"') && technology.includes('제품화 프로세스')],
+  ['Product lineup copy', products.includes('주요 제품 라인업') && products.includes('class="product-points"')],
+  ['Materials page copy', certification.includes('사업 검토에 필요한 자료를 정리합니다') && certification.includes('Materials')],
+  ['Contact guide copy', contact.includes('class="contact-guide"') && contact.includes('상담 범위')],
+  ['No sourcing language', !/나디온|Nadyon|nadyon|제품 목록 출처|등록 제품|등록명/.test(publicCopy)],
+  ['No temporary product tone', !/현재 개발 상품|개발품입니다|임시|샘플|placeholder/i.test(publicCopy)],
   ['No ecommerce cart', !/장바구니|결제|checkout|cart/i.test(home + products)],
   ['Premium clinical style tokens', css.includes('--champagne:') && css.includes('--panel:')],
-  ['Premium page hero styling', css.includes('.page-hero::before')],
-  ['Premium product card styling', css.includes('.product-card::before')]
+  ['New section styles', css.includes('.business-overview') && css.includes('.technology-roadmap') && css.includes('.contact-guide')]
 ];
 
 const failed = checks.filter(([, passed]) => !passed);
