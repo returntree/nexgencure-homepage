@@ -1587,7 +1587,7 @@ body[data-page="contact"] .site-nav a[href="contact.html"]::after,
   grid-template-columns: minmax(0, 0.78fr) minmax(420px, 0.82fr);
   gap: 34px;
   align-items: center;
-  margin-bottom: 44px;
+  margin-bottom: clamp(64px, 5vw, 88px);
 }
 
 .business-overview-intro .section-heading {
