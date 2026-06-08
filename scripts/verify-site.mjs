@@ -40,6 +40,7 @@ const checks = [
   ['Customer-facing brand positioning', /뷰티·헬스케어 기업|헬스케어 브랜드|제품 라인업/.test(publicCopy)],
   ['Customer value language', /일상 관리|건강한 생활|제품 경험|고객 문의|브랜드 안내/.test(publicCopy)],
   ['Company business overview', company.includes('class="business-overview"') && company.includes('사업영역과 핵심역량')],
+  ['Company business overview images', ['business-overview.webp', 'manufacturing-base.webp', 'product-lineup.webp', 'research-development.webp'].every(asset => company.includes(`assets/img/company/${asset}`))],
   ['Company customer standard', company.includes('class="standard-band"') && company.includes('일상에서 신뢰할 수 있는 제품 경험')],
   ['Technology roadmap', technology.includes('class="technology-roadmap"') && technology.includes('제품화 프로세스') && technology.includes('Brand Reliability')],
   ['Product lineup copy', products.includes('주요 제품 라인업') && products.includes('class="product-points"') && products.includes('편안한 사용 경험')],
@@ -51,7 +52,7 @@ const checks = [
   ['No temporary product tone', !/현재 개발 상품|개발품입니다|임시|샘플|placeholder/i.test(publicCopy)],
   ['No ecommerce cart', !/장바구니|결제|checkout|cart/i.test(home + products)],
   ['Premium clinical style tokens', css.includes('--champagne:') && css.includes('--panel:')],
-  ['New section styles', css.includes('.business-overview') && css.includes('.technology-roadmap') && css.includes('.contact-guide')]
+  ['New section styles', css.includes('.business-overview') && css.includes('.business-overview-visual') && css.includes('.technology-roadmap') && css.includes('.contact-guide')]
 ];
 
 const failed = checks.filter(([, passed]) => !passed);

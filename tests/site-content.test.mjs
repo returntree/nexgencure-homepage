@@ -65,6 +65,10 @@ test('company page explains the brand for customers', () => {
   assert.match(company, /연구개발/);
   assert.match(company, /고객이 경험할 수 있는 신뢰/);
   assert.match(company, /class="business-overview"/);
+  assert.match(company, /business-overview\.webp/);
+  assert.match(company, /manufacturing-base\.webp/);
+  assert.match(company, /product-lineup\.webp/);
+  assert.match(company, /research-development\.webp/);
   assert.match(company, /class="standard-band"/);
 });
 
@@ -129,6 +133,8 @@ test('stylesheet supports premium responsive corporate sections', () => {
   assert.match(css, /--panel:/);
   assert.match(css, /--shadow-soft:/);
   assert.match(css, /\.business-overview/);
+  assert.match(css, /\.business-overview-intro/);
+  assert.match(css, /\.business-overview-visual/);
   assert.match(css, /\.insight-grid/);
   assert.match(css, /\.technology-roadmap/);
   assert.match(css, /\.roadmap-list/);
