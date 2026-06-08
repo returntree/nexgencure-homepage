@@ -83,6 +83,10 @@ test('technology page explains customer value and productization process', () =>
   assert.match(technology, /manufacturing-base\.webp/);
   assert.match(technology, /research-link\.webp/);
   assert.match(technology, /brand-reliability\.webp/);
+  assert.match(technology, /roadmap-planning\.webp/);
+  assert.match(technology, /roadmap-manufacturing\.webp/);
+  assert.match(technology, /roadmap-research\.webp/);
+  assert.match(technology, /roadmap-guidance\.webp/);
   assert.match(technology, /class="technology-roadmap"/);
 });
 
@@ -142,6 +146,7 @@ test('stylesheet supports premium responsive corporate sections', () => {
   assert.match(css, /\.insight-grid/);
   assert.match(css, /\.technology-roadmap/);
   assert.match(css, /\.process-list article img/);
+  assert.match(css, /\.roadmap-list li img/);
   assert.match(css, /\.roadmap-list/);
   assert.match(css, /\.product-points/);
   assert.match(css, /\.contact-guide/);

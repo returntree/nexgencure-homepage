@@ -44,6 +44,7 @@ const checks = [
   ['Company customer standard', company.includes('class="standard-band"') && company.includes('일상에서 신뢰할 수 있는 제품 경험')],
   ['Technology roadmap', technology.includes('class="technology-roadmap"') && technology.includes('제품화 프로세스') && technology.includes('Brand Reliability')],
   ['Technology process images', ['product-planning.webp', 'manufacturing-base.webp', 'research-link.webp', 'brand-reliability.webp'].every(asset => technology.includes(`assets/img/technology/${asset}`))],
+  ['Technology roadmap images', ['roadmap-planning.webp', 'roadmap-manufacturing.webp', 'roadmap-research.webp', 'roadmap-guidance.webp'].every(asset => technology.includes(`assets/img/technology/${asset}`))],
   ['Product lineup copy', products.includes('주요 제품 라인업') && products.includes('class="product-points"') && products.includes('편안한 사용 경험')],
   ['Info page copy', certification.includes('넥스젠큐어의 브랜드와 제품을 안내합니다') && certification.includes('<p class="eyebrow">Info</p>')],
   ['Contact guide copy', contact.includes('class="contact-guide"') && contact.includes('제품·브랜드 문의') && contact.includes('문의 내용을 확인한 뒤')],
@@ -53,7 +54,7 @@ const checks = [
   ['No temporary product tone', !/현재 개발 상품|개발품입니다|임시|샘플|placeholder/i.test(publicCopy)],
   ['No ecommerce cart', !/장바구니|결제|checkout|cart/i.test(home + products)],
   ['Premium clinical style tokens', css.includes('--champagne:') && css.includes('--panel:')],
-  ['New section styles', css.includes('.business-overview') && css.includes('.business-overview-visual') && css.includes('.technology-roadmap') && css.includes('.process-list article img') && css.includes('.contact-guide')]
+  ['New section styles', css.includes('.business-overview') && css.includes('.business-overview-visual') && css.includes('.technology-roadmap') && css.includes('.process-list article img') && css.includes('.roadmap-list li img') && css.includes('.contact-guide')]
 ];
 
 const failed = checks.filter(([, passed]) => !passed);
