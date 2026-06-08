@@ -1587,7 +1587,7 @@ body[data-page="contact"] .site-nav a[href="contact.html"]::after,
   grid-template-columns: minmax(0, 0.78fr) minmax(420px, 0.82fr);
   gap: 34px;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 44px;
 }
 
 .business-overview-intro .section-heading {
@@ -1647,6 +1647,8 @@ body[data-page="contact"] .site-nav a[href="contact.html"]::after,
 }
 
 .insight-grid article {
+  display: flex;
+  flex-direction: column;
   padding: 0;
 }
 
@@ -1667,10 +1669,12 @@ body[data-page="contact"] .site-nav a[href="contact.html"]::after,
   aspect-ratio: 16 / 10;
   object-fit: cover;
   object-position: center;
+  border-top: 1px solid rgba(217, 230, 236, 0.88);
   background: linear-gradient(135deg, #f8fcfd 0%, #eaf7fb 48%, #f5eddd 100%);
 }
 
 .insight-grid article > div {
+  flex: 1;
   padding: 24px 26px 26px;
 }
 
