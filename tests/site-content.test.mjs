@@ -23,7 +23,7 @@ const requiredPages = [
 const publicCopy = [html, company, technology, products, certification, contact].join('\n');
 const publicHtml = publicCopy;
 
-test('site uses separate pages and consistent navigation', async () => {
+test('site uses separate pages and customer-facing navigation', async () => {
   for (const page of requiredPages) {
     await access(new URL(page, import.meta.url));
   }
@@ -31,8 +31,8 @@ test('site uses separate pages and consistent navigation', async () => {
   assert.match(html, /href="company\.html"/);
   assert.match(html, /href="technology\.html"/);
   assert.match(html, /href="products\.html"/);
-  assert.match(publicHtml, />Materials<\/a>/);
-  assert.doesNotMatch(publicHtml, />Certification<\/a>/);
+  assert.match(publicHtml, />Info<\/a>/);
+  assert.doesNotMatch(publicHtml, />Certification<\/a>|>Materials<\/a>/);
   assert.doesNotMatch(html, /href="#company"|href="#technology"|href="#products"/);
 });
 
@@ -48,67 +48,73 @@ test('homepage uses premium generated visual slider assets', () => {
   assert.match(js, /data-hero-slider/);
 });
 
-test('public copy reads like a corporate brand homepage', () => {
+test('public copy reads like a customer-facing brand homepage', () => {
   assert.doesNotMatch(publicCopy, /현재 개발 상품|개발품을 중심으로|개발품입니다|임시|샘플|placeholder/i);
   assert.doesNotMatch(publicCopy, /나디온|Nadyon|nadyon|제품 목록 출처|등록 제품|등록명/);
-  assert.doesNotMatch(publicCopy, /전자제품과 소금제품만|전자제품, 소금제품|선별했습니다|선별해|선별된|선별 제품/);
+  assert.doesNotMatch(publicCopy, /전자제품과 소금제품만|전자제품, 소금제품|선별했습니다|선별한|선별 제품/);
+  assert.doesNotMatch(publicCopy, /B2B|검토|정부지원사업|쇼핑몰형|자료화|구성했습니다|파트너가|거래처|기관|제작 의뢰|제휴 검토|검토용|자료 구조/);
   assert.match(publicCopy, /뷰티·헬스케어 기업|헬스케어 브랜드|제품 라인업/);
-  assert.match(publicCopy, /제조|연구개발|사업영역/);
+  assert.match(publicCopy, /일상 관리|건강한 생활|제품 경험|고객 문의|브랜드 안내/);
 });
 
-test('company page includes business overview and operating standards', () => {
+test('company page explains the brand for customers', () => {
   assert.match(company, /사업영역/);
   assert.match(company, /핵심역량/);
   assert.match(company, /운영 기준/);
   assert.match(company, /제조 기반/);
   assert.match(company, /연구개발/);
+  assert.match(company, /고객이 경험할 수 있는 신뢰/);
   assert.match(company, /class="business-overview"/);
   assert.match(company, /class="standard-band"/);
 });
 
-test('technology page explains practical productization process', () => {
+test('technology page explains customer value and productization process', () => {
   assert.match(technology, /제품화 프로세스/);
   assert.match(technology, /기획/);
   assert.match(technology, /제조/);
-  assert.match(technology, /자료화/);
-  assert.match(technology, /파트너 검토/);
+  assert.match(technology, /안내/);
+  assert.match(technology, /고객 경험/);
+  assert.match(technology, /Brand Reliability/);
   assert.match(technology, /class="technology-roadmap"/);
 });
 
-test('products page uses lineup language and product details', () => {
+test('products page uses customer-friendly lineup language', () => {
   assert.match(products, /주요 제품 라인업/);
   assert.match(products, /헬스케어 디바이스/);
   assert.match(products, /건강식품 라인업/);
   assert.match(products, /class="product-points"/);
-  assert.match(products, /B2B 제휴 검토용 정보 구성/);
-  assert.doesNotMatch(products, /현재 개발 상품|개발품입니다/);
+  assert.match(products, /편안한 사용 경험/);
+  assert.match(products, /건강한 생활 경험|일상 속 건강 관리/);
+  assert.doesNotMatch(products, /현재 개발 상품|개발품입니다|B2B|검토용|자료/);
   assert.match(products, /assets\/img\/products\/bs407\.png/);
   assert.match(products, /assets\/img\/products\/myongmunhwan\.jpg/);
 });
 
-test('materials page naming matches available content', () => {
-  assert.match(certification, /자료 안내|검토 자료|사업자 정보/);
-  assert.match(certification, /사업 검토에 필요한 자료를 정리합니다/);
-  assert.match(certification, /<p class="eyebrow">Materials<\/p>/);
+test('info page naming matches customer-facing brand content', () => {
+  assert.match(certification, /브랜드 안내|제품 안내|고객 문의/);
+  assert.match(certification, /넥스젠큐어의 브랜드와 제품을 안내합니다/);
+  assert.match(certification, /<p class="eyebrow">Info<\/p>/);
 });
 
-test('subpage heroes expose concise page cues', () => {
+test('subpage heroes expose concise customer-facing cues', () => {
   for (const page of [company, technology, products, certification, contact]) {
     assert.match(page, /class="hero-tags"/);
   }
 
   assert.match(company, /Manufacturing Base/);
   assert.match(technology, /Product Planning/);
-  assert.match(products, /B2B Review/);
-  assert.match(certification, /Business Info/);
+  assert.match(products, /Daily Care/);
+  assert.match(certification, /Brand Story/);
   assert.match(contact, /Partnership/);
+  assert.match(contact, /Customer Care/);
   assert.match(css, /\.hero-tags/);
 });
 
-test('contact page explains inquiry flow and consultation scope', () => {
+test('contact page explains customer inquiry flow and consultation scope', () => {
   assert.match(contact, /상담 범위/);
-  assert.match(contact, /접수 후 확인/);
-  assert.match(contact, /제품 라인업 상담/);
+  assert.match(contact, /문의 내용을 확인한 뒤/);
+  assert.match(contact, /제품·브랜드 문의/);
+  assert.match(contact, /고객 문의/);
   assert.match(contact, /class="contact-guide"/);
 });
 
