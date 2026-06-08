@@ -46,7 +46,7 @@ const checks = [
   ['Technology process images', ['product-planning.webp', 'manufacturing-base.webp', 'research-link.webp', 'brand-reliability.webp'].every(asset => technology.includes(`assets/img/technology/${asset}`))],
   ['Technology roadmap images', ['roadmap-planning.webp', 'roadmap-manufacturing.webp', 'roadmap-research.webp', 'roadmap-guidance.webp'].every(asset => technology.includes(`assets/img/technology/${asset}`))],
   ['Product lineup copy', products.includes('주요 제품 라인업') && products.includes('class="product-points"') && products.includes('편안한 사용 경험')],
-  ['Info page copy', certification.includes('넥스젠큐어의 브랜드와 제품을 안내합니다') && certification.includes('<p class="eyebrow">Info</p>')],
+  ['Info page copy', certification.includes('브랜드와 제품 경험을 한눈에 안내합니다') && certification.includes('class="info-flow"') && certification.includes('class="info-cta"') && certification.includes('<p class="eyebrow">Info</p>')],
   ['Contact guide copy', contact.includes('class="contact-guide"') && contact.includes('제품·브랜드 문의') && contact.includes('문의 내용을 확인한 뒤')],
   ['Subpage hero cues', [company, technology, products, certification, contact].every(page => page.includes('class="hero-tags"')) && products.includes('Daily Care') && contact.includes('Customer Care') && css.includes('.hero-tags')],
   ['No sourcing language', !/나디온|Nadyon|nadyon|제품 목록 출처|등록 제품|등록명/.test(publicCopy)],
@@ -54,7 +54,7 @@ const checks = [
   ['No temporary product tone', !/현재 개발 상품|개발품입니다|임시|샘플|placeholder/i.test(publicCopy)],
   ['No ecommerce cart', !/장바구니|결제|checkout|cart/i.test(home + products)],
   ['Premium clinical style tokens', css.includes('--champagne:') && css.includes('--panel:')],
-  ['New section styles', css.includes('.business-overview') && css.includes('.business-overview-visual') && css.includes('.technology-roadmap') && css.includes('.process-list article img') && css.includes('.roadmap-list li img') && css.includes('.contact-guide')]
+  ['New section styles', css.includes('.business-overview') && css.includes('.business-overview-visual') && css.includes('.technology-roadmap') && css.includes('.process-list article img') && css.includes('.roadmap-list li img') && css.includes('.info-flow') && css.includes('.info-cta') && css.includes('.contact-guide')]
 ];
 
 const failed = checks.filter(([, passed]) => !passed);

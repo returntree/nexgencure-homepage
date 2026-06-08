@@ -103,8 +103,11 @@ test('products page uses customer-friendly lineup language', () => {
 });
 
 test('info page naming matches customer-facing brand content', () => {
-  assert.match(certification, /브랜드 안내|제품 안내|고객 문의/);
-  assert.match(certification, /넥스젠큐어의 브랜드와 제품을 안내합니다/);
+  assert.match(certification, /브랜드 방향|제품 경험|고객 문의/);
+  assert.match(certification, /브랜드와 제품 경험을 한눈에 안내합니다/);
+  assert.match(certification, /class="info-flow"/);
+  assert.match(certification, /class="info-cta"/);
+  assert.match(certification, /처음 방문한 고객도 자연스럽게 이해/);
   assert.match(certification, /<p class="eyebrow">Info<\/p>/);
 });
 
@@ -148,6 +151,9 @@ test('stylesheet supports premium responsive corporate sections', () => {
   assert.match(css, /\.process-list article img/);
   assert.match(css, /\.roadmap-list li img/);
   assert.match(css, /\.roadmap-list/);
+  assert.match(css, /\.info-flow/);
+  assert.match(css, /\.info-steps/);
+  assert.match(css, /\.info-cta/);
   assert.match(css, /\.product-points/);
   assert.match(css, /\.contact-guide/);
 });
