@@ -1245,6 +1245,27 @@ body[data-page="contact"] .site-nav a[href="contact.html"]::after,
   letter-spacing: 0;
 }
 
+.process-list article {
+  display: flex;
+  flex-direction: column;
+}
+
+.process-list article img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  margin: 18px 0 20px;
+  border: 1px solid rgba(217, 230, 236, 0.9);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #f8fcfd 0%, #eaf7fb 48%, #f5eddd 100%);
+  box-shadow: 0 14px 32px rgba(7, 26, 47, 0.08);
+}
+
+.process-list h3 {
+  margin: 0 0 10px;
+}
+
 .quick-menu strong {
   color: var(--ink);
   font-size: 24px;

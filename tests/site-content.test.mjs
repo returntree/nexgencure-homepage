@@ -79,6 +79,10 @@ test('technology page explains customer value and productization process', () =>
   assert.match(technology, /안내/);
   assert.match(technology, /고객 경험/);
   assert.match(technology, /Brand Reliability/);
+  assert.match(technology, /product-planning\.webp/);
+  assert.match(technology, /manufacturing-base\.webp/);
+  assert.match(technology, /research-link\.webp/);
+  assert.match(technology, /brand-reliability\.webp/);
   assert.match(technology, /class="technology-roadmap"/);
 });
 
@@ -137,6 +141,7 @@ test('stylesheet supports premium responsive corporate sections', () => {
   assert.match(css, /\.business-overview-visual/);
   assert.match(css, /\.insight-grid/);
   assert.match(css, /\.technology-roadmap/);
+  assert.match(css, /\.process-list article img/);
   assert.match(css, /\.roadmap-list/);
   assert.match(css, /\.product-points/);
   assert.match(css, /\.contact-guide/);
